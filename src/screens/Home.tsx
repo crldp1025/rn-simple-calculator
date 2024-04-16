@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, View } from 'react-native';
 import Controls from '../components/Controls';
 import Text from '../components/Text';
 import colors from '../themes/colors';

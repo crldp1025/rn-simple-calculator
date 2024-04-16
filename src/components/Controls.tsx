@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { calculatorObj } from '../constant/Calculator';
-import { StyleSheet, View, Text as RNText } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Button, { IButtonColorProps } from './Button';
-import { isNumeric } from '../tools/helper';
+import { hasDecimal, isNumeric } from '../tools/helper';
 import { CalculatorContext } from '../context/calculatorContext';
 
 let prevValue: string | undefined = undefined;
@@ -66,9 +66,10 @@ const Controls = () => {
         operator = (val !== "=") ? val : operator;
 
         if(prevValue !== undefined) {
-          const total = selectOperatorFn().toFixed(2);
+          let total = selectOperatorFn();
+          total = (hasDecimal(total)) ? Number(total.toFixed(2)) : total;
           prevValue = total.toString();
-          currentValue = total;
+          currentValue = total.toString();
         } else {
           prevValue = currentValue;
         }
@@ -77,15 +78,13 @@ const Controls = () => {
         if(val === "=") {
           prevValue = undefined;
           operator = undefined;
-          console.log(prevValue)
-          console.log(currentValue)
         }
         handleSetValueFn();
       } else if(val === "%") {
         let total:number = 0;
         if(prevValue !== undefined && operator !== undefined) {
           total = selectOperatorFn();
-          total = Number(total.toFixed(2));
+          total = (hasDecimal(total)) ? Number(total.toFixed(2)) : total;
           total = total / 100;
         } else {
           total = Number(currentValue) / 100;
