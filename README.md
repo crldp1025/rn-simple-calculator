@@ -1,7 +1,7 @@
-<span align="center"><h1>Calculator</h1></span>
-<p align="center"><img src="./src/assets/images/Calculator-Icon.png" width="100px" /></p>
+# Simple Calculator
+<img src="./src/assets/images/Calculator-Icon.png" width="100px" />
 
-<p align="center">This is a Simple IOS Calculator Clone Mobile App created with [**React Native**](https://reactnative.dev). </p>
+This is a Simple IOS Calculator Clone Mobile App created with [**React Native**](https://reactnative.dev).
 
 # Screenshots
 
