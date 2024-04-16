@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { Dimensions, StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { Dimensions, StyleSheet, TextProps, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import Text from './Text';
 import colors from '../themes/colors';
 
-export type IButtonColorProps = "primary" | "secondary" | "tertiary";
+export type IButtonColorProps = "primary" | "secondary" | "tertiary" | "selected";
 
 interface IButtonProps extends TouchableOpacityProps {
   type?: IButtonColorProps;
@@ -15,10 +15,10 @@ interface IButtonProps extends TouchableOpacityProps {
 const buttonColorObj = {
   "primary": colors.darkGray,
   "secondary": colors.orange,
-  "tertiary": colors.gray
+  "tertiary": colors.gray,
+  "selected": colors.white
 }
 
-// const defaultDimensions = Dimensions.get('window').width / 4;
 const rightSpace = 15;
 
 const Button = ({
@@ -29,12 +29,13 @@ const Button = ({
   ...props 
 }: IButtonProps) => {
   const buttonDimensions = useMemo(() => {
-    let dimensionWidth = Dimensions.get('window').width / 4;
+    let dimensionWidth = Dimensions.get('window').width - (rightSpace * 3);
+    dimensionWidth = dimensionWidth / 4;
     dimensionWidth = dimensionWidth * col;
-    if(marginRight) dimensionWidth -= rightSpace; 
+    if(col > 1) dimensionWidth += ((col - 1) * rightSpace);
 
     let dimensionHeight = dimensionWidth;
-    if(col > 1) dimensionHeight = (dimensionHeight - rightSpace) / col;
+    if(col > 1) dimensionHeight /= col;
 
     return {
       width: dimensionWidth,
@@ -57,11 +58,17 @@ const Button = ({
     return newStyles;
   }, [type]);
 
-
-
-  const buttonTextStyles = useMemo(() => {
-    if(type === "tertiary") {
+  const buttonTextStyles: TextProps["style"] = useMemo(() => {
+    if(type === "secondary") {
+      return {
+        color: colors.white,
+        fontSize: 40,
+        fontWeight: "600"
+      };
+    } else if(type === "tertiary") {
       return { color: colors.black };
+    } else if(type === "selected") {
+      return { color: colors.orange }
     }
 
     return { color: colors.white };
@@ -75,7 +82,8 @@ const Button = ({
   return (
     <TouchableOpacity
       style={buttonStyles}
-      {...buttonProps}>
+      {...buttonProps}
+    >
       <Text style={buttonTextStyles}>{ children }</Text>
     </TouchableOpacity>
   );

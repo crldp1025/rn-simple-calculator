@@ -1,19 +1,19 @@
-import React, { useMemo } from 'react';
+import React, { ComponentType, forwardRef, useMemo } from 'react';
 import { Text as RNText, StyleSheet, TextProps } from 'react-native';
 
 interface ITextProps extends TextProps {}
 
-const Text = ({ children, ...props }: ITextProps ) => {
+const Text = (props: TextProps) => {
   const textProps = useMemo(() => {
     const { style, ...newProps } = props;
     return newProps;
   }, [props.style]);
   
   return (
-    <RNText 
+    <RNText
       style={[styles.text, props.style]}
       {...textProps}>
-      { children }
+      { props.children }
     </RNText>
   );
 };
@@ -24,6 +24,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 36,
     textAlign: "center",
-    flex: 1
   }
 });

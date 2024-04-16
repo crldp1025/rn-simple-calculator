@@ -1,3 +1,7 @@
+import Feathericon from 'react-native-vector-icons/Feather';
+import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Entypoicon from 'react-native-vector-icons/Entypo';
+
 export const calculatorObj = [
   {
     items: [
@@ -42,6 +46,7 @@ export const calculatorObj = [
       },
       {
         value: "x",
+        component: <Feathericon name="x" size={35} />,
         type: "secondary",
         col: 1
       },
@@ -66,6 +71,7 @@ export const calculatorObj = [
       },
       {
         value: "-",
+        component: <MCIcon name="minus-thick" size={35} />,
         type: "secondary",
         col: 1
       },
@@ -104,6 +110,7 @@ export const calculatorObj = [
       },
       {
         value: ".",
+        component: <Entypoicon name="dot-single" size={35} />,
         type: "primary",
         col: 1
       },
