@@ -33,7 +33,7 @@ Run this command in terminal to start the project:
 npx react-native start
 ```
 
->**Note**: After running `npx react-native start` in terminal, there will be a option there if you want to run it on Android or IOS device.
+>**Note**: After running `npx react-native start` in terminal, there will be an option there if you want to run it on Android or IOS device.
 
 # Learn More
 
