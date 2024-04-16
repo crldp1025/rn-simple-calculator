@@ -57,6 +57,7 @@ const Controls = () => {
         currentValue += val;
       }
 
+      currentValue = currentValue;
       handleSetValueFn();
     } else {
       if(val === "AC") {
@@ -65,8 +66,8 @@ const Controls = () => {
         operator = (val !== "=") ? val : operator;
 
         if(prevValue !== undefined) {
-          const total = selectOperatorFn().toString();
-          prevValue = total;
+          const total = selectOperatorFn().toFixed(2);
+          prevValue = total.toString();
           currentValue = total;
         } else {
           prevValue = currentValue;
@@ -76,7 +77,29 @@ const Controls = () => {
         if(val === "=") {
           prevValue = undefined;
           operator = undefined;
+          console.log(prevValue)
+          console.log(currentValue)
         }
+        handleSetValueFn();
+      } else if(val === "%") {
+        let total:number = 0;
+        if(prevValue !== undefined && operator !== undefined) {
+          total = selectOperatorFn();
+          total = Number(total.toFixed(2));
+          total = total / 100;
+        } else {
+          total = Number(currentValue) / 100;
+        }
+        currentValue = total.toString();
+        resetCurrVal = true;
+        operator = undefined;
+        handleSetValueFn();
+      } else if(val === "±") {
+        const currentVal = Number(currentValue) * -1;
+        currentValue = currentVal.toString();
+        handleSetValueFn();
+      } else if(val === ".") {
+        currentValue += val;
         handleSetValueFn();
       }
     }
