@@ -6,10 +6,10 @@
 # Screenshots
 
 ## Android
-<img src="./src/assets//images//Calculator-Android.png" width="200px" />
+<img src="./src/assets/images/Calculator-Android.png" width="200px" />
 
 ## IOS
-<img src="./src/assets//images//Calculator-IOS.png" width="200px" />
+<img src="./src/assets/images/Calculator-IOS.png" width="200px" />
 
 # Getting Started
 
